@@ -34,7 +34,7 @@ blueprint:
       selector:
         device:
           filter:
-            integration: wled
+            integration: light
           multiple: true
 
 alias: Bambu Lab WLED Controller
