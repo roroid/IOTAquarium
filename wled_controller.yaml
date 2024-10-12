@@ -81,9 +81,8 @@ action:
             - 255
             - 255
             - 255
-          brightness_pct: 100
-          effect: Solid
-        alias: Turn WLED light on white
+          brightness: 100
+        alias: Turn light on white
         target:
           device_id:
             !input wled_lights
@@ -111,7 +110,6 @@ action:
                     - 0
                     - 0
                   brightness: 255
-                  effect: Blink
                 target:
                   device_id:
                     !input wled_lights
@@ -138,7 +136,6 @@ action:
                     - 255
                     - 0
                   brightness: 255
-                  effect: Solid
                 target:
                   device_id:
                     !input wled_lights
@@ -155,7 +152,6 @@ action:
                     - 255
                     - 255
                   brightness: 255
-                  effect: Solid
                 target:
                   device_id: !input wled_lights
                 alias: Turn on Wled to white
@@ -176,7 +172,6 @@ action:
                     - 0
                     - 255
                   brightness: 255
-                  effect: Blink
                 target:
                   device_id:
                     !input wled_lights
@@ -200,7 +195,6 @@ action:
                     - 169
                     - 0
                   brightness: 255
-                  effect: Blink
                 target:
                   device_id:
                     !input wled_lights
