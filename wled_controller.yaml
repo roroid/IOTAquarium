@@ -33,9 +33,6 @@ blueprint:
       description: "Select the WLED light devices you wish to control."
       selector:
         device:
-          filter:
-            integration: light
-          multiple: true
 
 alias: Bambu Lab WLED Controller
 description: ""
