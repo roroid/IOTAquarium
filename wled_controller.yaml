@@ -1,6 +1,6 @@
 blueprint:
-  name: Bambu Lab WLED Controller
-  description: Control one or more WLED lights with Bambu 3d printer
+  name: Bambu Lab RGB LED  Controller
+  description: Control one or more RGB LED lights with Bambu 3d printer
   domain: automation
   source_url: https://github.com/greghesp/ha-bambulab/blob/main/blueprints/wled_controller.yaml
   input:
@@ -29,12 +29,12 @@ blueprint:
             domain: light
             integration: bambu_lab
     wled_lights:
-      name: WLED Light devices
-      description: "Select the WLED light devices you wish to control."
+      name: RGB LED Light devices
+      description: "Select the RGB light devices you wish to control."
       selector:
         device:
 
-alias: Bambu Lab WLED Controller
+alias: Bambu Lab RGB LED Controller
 description: ""
 trigger:
   - platform: state
@@ -81,7 +81,7 @@ action:
             - 255
             - 255
             - 255
-          brightness: 100
+          brightness: 255
         alias: Turn light on white
         target:
           device_id:
@@ -113,7 +113,7 @@ action:
                 target:
                   device_id:
                     !input wled_lights
-                alias: Turn on Wled to red
+                alias: Turn on RGB to red
         alias: Do we need to set color to red?
       - choose:
           - conditions:
@@ -132,17 +132,17 @@ action:
               - service: light.turn_on
                 data:
                   rgb_color:
-                    - 0
                     - 255
                     - 0
+                    - 255
                   brightness: 255
                 target:
                   device_id:
                     !input wled_lights
-                alias: Turn on Wled to green
+                alias: Turn on RGB to purple
               - delay:
                   hours: 0
-                  minutes: 5
+                  minutes: 1
                   seconds: 0
                   milliseconds: 0
               - service: light.turn_on
@@ -154,9 +154,19 @@ action:
                   brightness: 255
                 target:
                   device_id: !input wled_lights
-                alias: Turn on Wled to white
-
-        alias: Do we need to set color to green?
+                alias: Turn on RGB to white
+              - delay:
+                  hours: 0
+                  minutes: 5
+                  seconds: 0
+                  milliseconds: 0
+              - service: light.turn_off
+                data: {}
+                target:
+                  device_id:
+                    !input wled_lights
+                alias: Turn RGB light off                  
+                alias: Do we need to set color to green?
       - choose:
           - conditions:
               - condition: or
@@ -175,7 +185,7 @@ action:
                 target:
                   device_id:
                     !input wled_lights
-                alias: Turn on Wled to blue
+                alias: Turn on RGB to blue
         alias: Do we need to set color to blue?
       - choose:
           - conditions:
@@ -192,13 +202,13 @@ action:
                 data:
                   rgb_color:
                     - 255
-                    - 169
+                    - 255
                     - 0
                   brightness: 255
                 target:
                   device_id:
                     !input wled_lights
-                alias: Turn on Wled to yellow
+                alias: Turn on RGB to yellow
         alias: Do we need to set color to yellow?
     else:
       - service: light.turn_off
@@ -206,5 +216,5 @@ action:
         target:
           device_id:
             !input wled_lights
-        alias: Turn WLED light off
+        alias: Turn RGB light off
 mode: single
